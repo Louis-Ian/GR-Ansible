@@ -1,0 +1,19 @@
+---
+- hosts: monitors
+  remote_user: root
+  become: yes
+  tasks:
+    - name: git clone
+      git:
+        repo: https://github.com/alexfrt/photoshare.git
+        dest: /home/
+    - name: install docker kibana
+      docker_container:
+        name: kibana
+        image: docker.elastic.co/kibana/kibana:7.5.0
+        volumes:
+          #- /data
+    - name: install metricbeat
+    #
+    - name: install filbeat
+    #
